@@ -26,6 +26,7 @@ const crypto = require("crypto");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.set('trust proxy', 1); // 1 correspond à un niveau de confiance minimal
 // Configuration de sécurité avancée
 app.use(helmet({
   contentSecurityPolicy: {
