@@ -1,3 +1,17 @@
+/*
+ * Copyright (c) 2024 Famous Tech && Famous-Tech-Group
+ * Tous droits réservés.
+ *
+ * Ce SaaS est la propriété de Famous Tech et est protégé par les lois sur le droit d'auteur.
+ * Toute reproduction, distribution ou utilisation non autorisée de ce logiciel est strictement interdite.
+ * Pour obtenir une licence ou des informations supplémentaires, veuillez contacter Famous Tech
+ *
+ * Famous-Tech-Group 
+ * Haïti
+ * 1509 43782508 
+ * famoustechht@gmail.com
+ */
+
 const express = require("express");
 const morgan = require("morgan");
 const multer = require("multer");
@@ -28,7 +42,7 @@ app.disable("x-powered-by");
 // Configuration des sessions
 app.use(
   session({
-    secret: "famous-secret-key-with-extra-randomness-2024", // Légèrement modifié pour plus de sécurité
+    secret: "famous-secret-key-with-extra-randomnessoejeneo283hru292jdd-2024", // Ceci est un code de sécurité pour les cookies
     resave: false,
     saveUninitialized: true,
     cookie: { 
@@ -63,12 +77,8 @@ const apiLimiter = rateLimit({
 
 // Filtrage des fichiers
 const fileFilter = (req, file, cb) => {
-  const allowedTypes = ["image/jpeg", "image/png", "application/pdf", "text/plain"];
-  if (allowedTypes.includes(file.mimetype)) {
-    cb(null, true);
-  } else {
-    cb(new Error("Type de fichier non autorisé"), false);
-  }
+  // Accepte tous les types de fichiers
+  cb(null, true);
 };
 
 // Stockage des fichiers
@@ -90,7 +100,7 @@ const storage = multer.diskStorage({
 const upload = multer({ 
   storage, 
   fileFilter, 
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5 Mo 
+  limits: { fileSize: 1 * 1024 * 1024 * 1024 }, // ceci est équivalent à 1 Go 
 });
 
 // Middleware
