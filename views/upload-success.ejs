@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Réussi</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%2334D399'><circle cx='50' cy='50' r='40'/></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    @keyframes confetti {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-100vh) rotate(360deg); }
+    }
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: rgba(255, 255, 255, 0.7);
+      animation: confetti 3s linear infinite;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-100 to-green-300 min-h-screen flex items-center justify-center relative overflow-hidden">
+  <div id="confetti-container" class="absolute inset-0 pointer-events-none"></div>
+  
+  <div class="bg-white shadow-2xl rounded-2xl p-8 max-w-md w-full relative z-10 
+              transform transition-all duration-500 hover:scale-105 
+              border-4 border-green-500 border-opacity-30">
+    <div class="text-center">
+      <div class="text-6xl mb-4 animate-bounce">
+        <i class="fas fa-check-circle text-green-500"></i>
+      </div>
+      <h1 class="text-3xl font-extrabold text-green-600 mb-6 
+                 bg-green-50 rounded-lg py-2 
+                 animate-pulse">Fichier Uploadé avec Succès !</h1>
+      
+      <div class="bg-green-50 rounded-lg p-4 mb-6 text-left 
+                  shadow-inner border-l-4 border-green-400">
+        <p class="mb-2 flex items-center">
+          <i class="fas fa-file mr-2 text-green-500"></i>
+          <strong class="text-gray-700 mr-2">Nom original :</strong> 
+          <span class="text-gray-600 truncate max-w-full"><%= file.originalname %></span>
+        </p>
+        <p class="mb-2 flex items-center">
+          <i class="fas fa-weight text-blue-500 mr-2"></i>
+          <strong class="text-gray-700 mr-2">Taille :</strong> 
+          <span class="text-gray-600"><%= (file.size / (1024 * 1024)).toFixed(2) %> Mo</span>
+        </p>
+        <p class="mb-2 flex items-center">
+          <i class="fas fa-fingerprint mr-2 text-purple-500"></i>
+          <strong class="text-gray-700 mr-2">Identifiant unique :</strong> 
+          <code class="bg-gray-100 rounded px-2 py-1 text-sm text-gray-700">
+            <%= file.filename.split('-')[1] %>
+          </code>
+        </p>
+      </div>
+      
+      <div class="space-y-4">
+        <a 
+          href="/" 
+          class="w-full inline-block bg-blue-600 text-white py-3 rounded-lg 
+                 hover:bg-blue-700 transition duration-300 
+                 transform hover:-translate-y-1 hover:shadow-lg
+                 flex items-center justify-center space-x-2"
+        >
+          <i class="fas fa-home"></i>
+          <span>Retour à l'accueil</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function createConfetti() {
+      const container = document.getElementById('confetti-container');
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = `${Math.random() * 100}%`;
+        confetti.style.animationDelay = `${Math.random() * 3}s`;
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
+        container.appendChild(confetti);
+      }
+    }
+    createConfetti();
+  </script>
+</body>
+</html>

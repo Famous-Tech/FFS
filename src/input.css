@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Exemple de styles personnalisés */
+body {
+  @apply bg-gray-100 text-gray-800 font-sans;
+}
+
+h1, h2, h3 {
+  @apply text-center font-bold text-gray-700;
+}
+
+form {
+  @apply bg-white p-6 rounded-lg shadow-md;
+}
+
+button {
+  @apply bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-800 focus:ring-4 focus:outline-none;
+}
+
+input[type="file"] {
+  @apply block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2;
+}
+
+ul li {
+  @apply flex justify-between items-center py-3 border-b border-gray-200;
+}
+
+a {
+  @apply text-blue-600 hover:text-blue-800;
+}
